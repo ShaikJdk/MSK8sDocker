@@ -34,7 +34,7 @@ tools {
         stage('Deploy To Kubernetes') {
     steps {
         dir('payment-service1') {
-            bat 'kubectl apply -f k8s/'
+            bat 'kubectl --kubeconfig=C:\\Users\\SUBHANI\\.kube\\config apply -f k8s/'
         }
     }
 }
