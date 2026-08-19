@@ -25,16 +25,18 @@ tools {
 
         stage('Build Docker Image') {
     steps {
-        dir('spring-cloud-apigateway1') {
-            bat 'docker build -t api-gateway1:latest .'
+        dir('payment-service1') {
+            bat 'docker build -t payment-service1:latest .'
         }
     }
 }
 
         stage('Deploy To Kubernetes') {
-            steps {
-                bat 'kubectl apply -f k8s/'
-            }
+    steps {
+        dir('payment-service1') {
+            bat 'kubectl apply -f k8s/'
         }
+    }
+}
     }
 }

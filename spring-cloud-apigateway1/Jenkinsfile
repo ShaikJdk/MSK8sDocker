@@ -37,10 +37,12 @@ pipeline {
 }
 
         stage('Deploy To Kubernetes') {
-            steps {
-                bat 'kubectl apply -f k8s/'
-            }
+    steps {
+        dir('spring-cloud-apigateway1') {
+            bat 'kubectl apply -f k8s/'
         }
+    }
+}
 
     }
 
