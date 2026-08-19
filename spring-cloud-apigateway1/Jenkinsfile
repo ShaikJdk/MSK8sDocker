@@ -29,10 +29,12 @@ pipeline {
 }
 
         stage('Build Docker Image') {
-            steps {
-                bat 'docker build -t api-gateway1:latest .'
-            }
+    steps {
+        dir('spring-cloud-apigateway1') {
+            bat 'docker build -t api-gateway1:latest .'
         }
+    }
+}
 
         stage('Deploy To Kubernetes') {
             steps {
