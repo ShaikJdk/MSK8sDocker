@@ -2,6 +2,11 @@ pipeline {
 
     agent any
 
+tools {
+        // This MUST match the exact Name you typed in Jenkins UI
+        maven 'apache-maven-3.9.6' 
+    }
+	
     stages {
 
         stage('Checkout') {
@@ -13,7 +18,7 @@ pipeline {
         stage('Build Jar') {
     steps {
         dir('order-service1') {
-            bat 'mvn  clean package -DskipTests'
+            bat 'mvn clean package -DskipTests'
         }
     }
 }

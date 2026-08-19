@@ -1,6 +1,11 @@
 pipeline {
 
     agent any
+	
+	tools {
+        // This MUST match the exact Name you typed in Jenkins UI
+        maven 'apache-maven-3.9.6' 
+    }
 
     environment {
         IMAGE_NAME = "api-gateway1"
