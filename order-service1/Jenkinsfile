@@ -13,7 +13,7 @@ pipeline {
         stage('Build Jar') {
     steps {
         dir('order-service1') {
-            bat 'mvnw.cmd clean package -DskipTests'
+            bat 'mvn  clean package -DskipTests'
         }
     }
 }

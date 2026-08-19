@@ -18,7 +18,7 @@ pipeline {
         stage('Build Jar') {
     steps {
         dir('spring-cloud-apigateway1') {
-            bat 'mvnw.cmd clean package -DskipTests'
+            bat 'mvn clean package -DskipTests'
         }
     }
 }
