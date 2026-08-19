@@ -9,7 +9,7 @@ spec:
 
   selector:
     matchLabels:
-      app: api-gateway
+      app: api-gateway1
 
   template:
     metadata:

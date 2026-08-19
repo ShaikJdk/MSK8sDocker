@@ -1,25 +1,16 @@
-pipeline {
+apiVersion: v1
+kind: Service
 
-    agent any
+metadata:
+  name: api-gateway-service
 
-    stages {
+spec:
+  selector:
+    app: api-gateway1
 
-        stage('Build') {
-            steps {
-                bat 'mvn clean package -DskipTests'
-            }
-        }
+  ports:
+    - protocol: TCP
+      port: 6060
+      targetPort: 6060
 
-        stage('Docker Build') {
-            steps {
-                bat 'docker build -t api-gateway1:latest .'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                bat 'kubectl apply -f k8s/'
-            }
-        }
-    }
-}
+  type: ClusterIP
