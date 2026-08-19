@@ -1,0 +1,29 @@
+server:
+  port: 6060
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: http://order-service
+          predicates:
+            - Path=/orders/**
+        - id: payment-service
+          uri: http://payment-service
+          predicates:
+            - Path=/payments/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+  endpoint:
+    health:
+      probes:
+        enabled: true
