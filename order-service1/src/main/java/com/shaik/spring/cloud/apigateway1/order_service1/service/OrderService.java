@@ -1,5 +1,6 @@
 package com.shaik.spring.cloud.apigateway1.order_service1.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -21,6 +22,9 @@ public class OrderService {
         this.webClient = webClient;
     }
 
+    @Value("${payment.service.url}")
+    private String paymentServiceUrl;
+    
     public OrderResponse createOrder(Order order) {
 
         Order savedOrder = orderRepository.save(order);
@@ -32,7 +36,7 @@ public class OrderService {
 
         Payment paymentResponse =
                 webClient.post()
-                        .uri("http://localhost:6062/payments/doPayment")
+                        .uri(paymentServiceUrl + "/payments/doPayment")
                         .bodyValue(request)
                         .retrieve()
                         .bodyToMono(Payment.class)

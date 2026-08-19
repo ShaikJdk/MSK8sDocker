@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: payment-service
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: payment-service1
+
+  template:
+    metadata:
+      labels:
+        app: payment-service1
+
+    spec:
+      containers:
+        - name: payment-service1
+
+          image: payment-service1:latest
+
+          imagePullPolicy: Never
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+
+          ports:
+            - containerPort: 6062
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 6062
+            initialDelaySeconds: 20
+
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 6062
+            initialDelaySeconds: 20

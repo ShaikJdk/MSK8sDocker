@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: paymentuser
+    password: payment123
+
+  jpa:
+    hibernate:
+      ddl-auto: update

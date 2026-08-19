@@ -1,0 +1,14 @@
+
+payment:
+  service:
+    url: http://payment-service1:6062
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysqldb
+    username: mylocalsql
+    password: Admin$*07
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

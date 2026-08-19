@@ -2,11 +2,6 @@ pipeline {
 
     agent any
 
-    environment {
-        IMAGE_NAME = "api-gateway1"
-        IMAGE_TAG  = "latest"
-    }
-
     stages {
 
         stage('Checkout') {
@@ -15,15 +10,15 @@ pipeline {
             }
         }
 
-        stage('Build Jar') {
+        stage('Build') {
             steps {
                 bat 'mvn clean package -DskipTests'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Docker Build') {
             steps {
-                bat 'docker build -t %IMAGE_NAME%:%IMAGE_TAG% .'
+                bat 'docker build -t payment-service1:latest .'
             }
         }
 
@@ -32,18 +27,5 @@ pipeline {
                 bat 'kubectl apply -f k8s/'
             }
         }
-
-    }
-
-    post {
-
-        success {
-            echo 'API Gateway deployed successfully'
-        }
-
-        failure {
-            echo 'Build or deployment failed'
-        }
-
     }
 }

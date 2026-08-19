@@ -3,25 +3,21 @@ server:
 
 spring:
   application:
-    name: order-service
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/mysqldb
-    username: mylocalsql
-    password: Admin$*07
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+    name: order-service1
 
 management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
   endpoints:
     web:
       exposure:
         include: health,info
 
-  endpoint:
-    health:
-      probes:
-        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

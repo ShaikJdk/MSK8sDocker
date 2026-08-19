@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: order-service1
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: order-service1
+
+  template:
+    metadata:
+      labels:
+        app: order-service1
+
+    spec:
+      containers:
+        - name: order-service1
+
+          image: order-service1:latest
+
+          imagePullPolicy: Never
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+          ports:
+            - containerPort: 6061
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 6061
+            initialDelaySeconds: 20
+
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 6061
+            initialDelaySeconds: 20

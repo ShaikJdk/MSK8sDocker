@@ -3,21 +3,7 @@ server:
 
 spring:
   application:
-    name: payment-service
-
-  datasource:
-      url: jdbc:oracle:thin:@localhost:1521/pdb1
-      username: mydb_subbu
-      password: Mydb123
-      driver-class-name: oracle.jdbc.OracleDriver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+    name: payment-service1
 
 management:
   endpoints:
