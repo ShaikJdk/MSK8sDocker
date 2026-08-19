@@ -9,11 +9,11 @@ spring:
     gateway:
       routes:
         - id: order-service
-          uri: http://order-service
+          uri: http://order-service1
           predicates:
             - Path=/orders/**
         - id: payment-service
-          uri: http://payment-service
+          uri: http://payment-service1
           predicates:
             - Path=/payments/**
 
